@@ -7,7 +7,7 @@ terraform {
         }
     } 
     backend "gcs" {
-        bucket = "tfstate-cloud-buite-sdu"
+        bucket = "tfstate-cloud-bite-sdu-13"
         prefix = "terraform/state"
     }
 }
@@ -20,43 +20,44 @@ provider "google" {
 
 
 resource "google_storage_bucket" "default" {
-    name = "tfstate-cloud.bite-sdu"
+    name = "tfstate-cloud-bite-sdu-13"
     force_destroy ="false"
     location = "EU"
     storage_class = "STANDARD"
     versioning {
         enabled = true
     }
+    public_access_prevention = "enforced"
 }
 
-# Create a GCP project
-resource "google_project" "my_project" {
-  name       = "my-project-name"
-  project_id = "my-project-id"
-  org_id     = "your-organization-id" # Optional: If applicable
-}
+# # Create a GCP project
+# resource "google_project" "my_project" {
+#   name       = "my-project-name"
+#   project_id = "my-project-id"
+#   org_id     = "your-organization-id" # Optional: If applicable
+# }
 
-# Enable necessary APIs
-resource "google_project_service" "source_repo" {
-  project = google_project.my_project.project_id
-  service = "sourcerepo.googleapis.com"
-}
+# # Enable necessary APIs
+# resource "google_project_service" "source_repo" {
+#   project = google_project.my_project.project_id
+#   service = "sourcerepo.googleapis.com"
+# }
 
-resource "google_project_service" "secret_manager" {
-  project = google_project.my_project.project_id
-  service = "secretmanager.googleapis.com"
-}
+# resource "google_project_service" "secret_manager" {
+#   project = google_project.my_project.project_id
+#   service = "secretmanager.googleapis.com"
+# }
 
-resource "google_project_service" "sqladmin" {
-  project = google_project.my_project.project_id
-  service = "sqladmin.googleapis.com"
-}
+# resource "google_project_service" "sqladmin" {
+#   project = google_project.my_project.project_id
+#   service = "sqladmin.googleapis.com"
+# }
 
-# Create a Google Cloud Source Repository git repo
-resource "google_sourcerepo_repository" "my_repo" {
-  name     = "my-repo-name"
-  project  = google_project.my_project.project_id
-}
+# # Create a Google Cloud Source Repository git repo
+# resource "google_sourcerepo_repository" "my_repo" {
+#   name     = "my-repo-name"
+#   project  = google_project.my_project.project_id
+# }
 
 # Set up IAM roles and invite team members
 # Define your IAM roles and bindings here
