@@ -8,17 +8,17 @@ terraform {
     }
 
     backend "gcs" {
-        bucket = "tfstate-cloud-bite-sdu-13"
+        bucket = "tfstate-cloud-bite-sdu-ccc-13"
         prefix = "terraform/state"
     }
 }
 
 resource "google_compute_network" "vpc_network" {
-  name = "terraform2-network"
+  name = "terraform13-network"
 }
 
 resource "google_storage_bucket" "default" {
-    name = "tfstate-cloud-bite-sdu-13"
+    name = "tfstate-cloud-bite-sdu-ccc-13"
     location = "EU"
     force_destroy = false
     storage_class = "STANDARD"
