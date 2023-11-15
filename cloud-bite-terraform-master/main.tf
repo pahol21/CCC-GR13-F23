@@ -71,7 +71,7 @@ resource "google_cloud_run_service" "nestjs_service" {
    template {
     spec {
       containers {
-        image = "gcr.io/ccc-gr13-f23/nestjs-backend:latest"
+        image = "gcr.io/ccc-gr13-f23/nestjs-backend:database"
         ports {
           container_port = 3000
         }
@@ -104,8 +104,8 @@ resource "google_sql_database_instance" "default" {
     ip_configuration {
       ipv4_enabled = true
       authorized_networks {
-        name  = "My Home IP"
-        value = "185.136.116.212"
+        name  = "Allow all inbound"
+        value = "0.0.0.0/0"
       }
     }
   }
@@ -123,81 +123,3 @@ resource "google_sql_user" "users" {
   instance = google_sql_database_instance.default.name
   password = "admin_password"
 }
-
-
-
-
-# # Cloud SQL Database Instance
-# resource "google_sql_database_instance" "default" {
-#   name     = "my-database-instance"
-#   region   = "europe-west1"
-#   database_version = "MYSQL_5_7"
-
-#   settings {
-#     tier = "db-f1-micro"
-#     ip_configuration {
-#         ipv4_enabled    = true
-#     }
-#   }
-# }
-
-# # Cloud SQL Database
-# resource "google_sql_database" "default" {
-#   name     = "my-database"
-#   instance = google_sql_database_instance.default.name
-# }
-
-# # Cloud SQL User
-# resource "google_sql_user" "users" {
-#   name     = "admin_user"
-#   instance = google_sql_database_instance.default.name
-#   password = "admin_password"
-# }
-
-# # Cloud Run Service for NestJS Backend
-# resource "google_cloud_run_service" "nestjs_service" {
-#   name     = "nestjs-backend-service-database"
-#   location = "europe-west1"
-  
-#   template {
-#     spec {
-#       containers {
-#         image = "gcr.io/ccc-gr13-f23/nestjs-backend-database"
-#         ports {
-#           container_port = 3000
-#         }
-#         env {
-#           name  = "DB_HOST"
-#           value = google_sql_database_instance.default.connection_name
-#         }
-#         env {
-#           name  = "DB_USERNAME"
-#           value = google_sql_user.users.name
-#         }
-#         env {
-#           name  = "DB_PASSWORD"
-#           value = google_sql_user.users.password
-#         }
-#         env {
-#           name  = "DB_NAME"
-#           value = google_sql_database.default.name
-#         }
-#       }
-#     }
-#     metadata {
-#       annotations = {
-#         "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.default.name
-#       }
-#     }
-#   }
-
-#   traffic {
-#     percent         = 100
-#     latest_revision = true
-#   }
-# }
-# resource "google_project_iam_member" "cloud_run_cloud_sql_client" {
-#   project = "ccc-gr13-f23"
-#   role    = "roles/cloudsql.client"
-#   member  = "serviceAccount:${google_cloud_run_service.nestjs_service.template.spec.containers[0].image}"
-# }
