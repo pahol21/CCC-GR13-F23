@@ -1,20 +1,22 @@
 import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
 import { Order } from "./order.entity";
-import { Repository } from "typeorm";
 
 @Injectable()
 export class OrderService {
-  constructor(
-    @InjectRepository(Order)
-    private ordersRepository: Repository<Order>
-  ) {}
+  private readonly orders: Order[] = [
+    { id: 1, name: "Salad", price: 5 },
+    { id: 2, name: "Soup", price: 4 },
+    { id: 3, name: "Burger", price: 10 },
+    // Add more static orders as needed
+  ];
 
-  findAll(): Promise<Order[]> {
-    return this.ordersRepository.find();
+  findAll(): Order[] {
+    return this.orders;
   }
 
-  addOrder(order: Order): Promise<Order> {
-    return this.ordersRepository.save(order);
+  addOrder(order: Order): Order {
+    // Add logic to add to the orders array if needed
+    console.log("Order added:", order);
+    return order;
   }
 }

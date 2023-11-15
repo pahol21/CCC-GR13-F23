@@ -7,18 +7,13 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Get("menu")
-  getMenu(): any {
-    const menu = [
-      { name: "Salad", price: 5 },
-      { name: "Soup", price: 4 },
-      { name: "Burger", price: 10 },
-      { name: "Pizza", price: 12 },
-    ];
-    return menu;
+  getMenu(): Order[] {
+    return this.orderService.findAll();
   }
 
   @Post("order")
-  createOrder(@Body() orderData: Order): Promise<Order> {
+  createOrder(@Body() orderData: Order): Order {
+    console.log("Order received:", orderData);
     return this.orderService.addOrder(orderData);
   }
 }
