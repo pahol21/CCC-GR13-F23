@@ -85,3 +85,10 @@ resource "google_cloud_run_service" "nestjs_service" {
   }
 }
 
+resource "google_cloud_run_service_iam_member" "nestjs_service_public" {
+  location = google_cloud_run_service.nestjs_service.location
+  project  = google_cloud_run_service.nestjs_service.project
+  service  = google_cloud_run_service.nestjs_service.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
