@@ -7,16 +7,17 @@ import { Order } from "./order/order.entity";
   imports: [
     TypeOrmModule.forRoot({
       type: "mysql",
-      host: "mysql-database",
+      host: '34.78.239.225', // Direct IP address
       port: 3306,
-      username: "admin_user",
-      password: "admin_password",
-      database: "cloud_bite_database",
+      username: 'admin_user', // Direct username
+      password: 'admin_password', // Direct password
+      database: 'my-database', // Direct database name
       entities: [Order],
       synchronize: true,
-      retryAttempts: 50,
+      retryAttempts: 5,
     }),
     OrderModule,
   ],
 })
 export class AppModule {}
+

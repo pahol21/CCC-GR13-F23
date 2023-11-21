@@ -2,20 +2,20 @@ import "./App.css";
 import { useQuery, useMutation } from "react-query";
 import axios from "axios";
 
+
 function App() {
   const fetchMenu = async () => {
-    return await axios
-      .get("http://localhost:3000/menu")
-      .then((response) => response.data);
+    return await axios.get(`${process.env.REACT_APP_API_URL}/menu`).then((response) => response.data);
   };
-  const { data, error, isLoading } = useQuery("menu", fetchMenu);
+
+  const { data, error, isLoading } = useQuery(`${process.env.REACT_APP_API_URL}/menu`, fetchMenu);
 
   const orderMutation = useMutation((order) =>
-    axios.post("http://localhost:3000/order", order)
+    axios.post(`${process.env.REACT_APP_API_URL}/order`, order)
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Server is not up...</div>;
   }
 
   if (error) {

@@ -8,7 +8,7 @@ services:
       - 3001:3000
     restart: always
     volumes:
-      - ../cloud-bite-frontend:${DEV_FOLDER_ABSOLUTE_PATH}
+      - ../cloud-bite-frontend-master:${DEV_FOLDER_ABSOLUTE_PATH}
     working_dir: ${DEV_FOLDER_ABSOLUTE_PATH}
     command: npm run start
     networks:
@@ -18,7 +18,7 @@ services:
   nestjs-backend:
     container_name: nestjs-backend
     build:
-      context: ../cloud-bite-backend
+      context: ../cloud-bite-backend-master
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
