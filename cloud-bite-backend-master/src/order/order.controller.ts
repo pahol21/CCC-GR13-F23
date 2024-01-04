@@ -13,6 +13,7 @@ export class OrderController {
       { name: "Soup", price: 4 },
       { name: "Burger", price: 10 },
       { name: "Pizza", price: 12 },
+      { name: "Pasta", price: 15 },
     ];
     return menu;
   }
