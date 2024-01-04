@@ -78,7 +78,7 @@ resource "google_cloud_run_service" "nestjs_service" {
    template {
     spec {
       containers {
-        image = "gcr.io/ccc-gr13-f23/nestjs-backend:database"
+        image = "gcr.io/ccc-gr13-f23/nestjs-backend:latest"
         ports {
           container_port = 3000
         }
