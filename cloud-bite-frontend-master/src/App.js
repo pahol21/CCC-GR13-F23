@@ -27,7 +27,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="container">
       <h1>Menu</h1>
       {data.map((food) => (
         <li>
@@ -35,7 +35,7 @@ function App() {
           <button onClick={() => handlePlaceOrder(food)}>Add to cart</button>
         </li>
       ))}
-    </>
+    </div>
   );
 }
 
