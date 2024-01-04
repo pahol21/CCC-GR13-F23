@@ -15,7 +15,6 @@ export class OrderController {
       { name: "Pizza", price: 12 },
       { name: "Pasta", price: 15 },
       { name: "Lasagna", price: 16 },
-      { name: process.env.DB_HOST, price: 20 },
     ];
     return menu;
   }
