@@ -24,12 +24,10 @@ resource "google_cloudbuild_trigger" "on_push_trigger" {
   name = "on-push-trigger"
   description = "Trigger for repo"
 
-  github {
-    owner = "pahol21"
-    name = "CCC-G13-F23"
-    push {
-      branch = "^master$"
-    }
+  trigger_template {
+    repo_name = "github_pahol21_ccc-gr13-f23"
+    project = "CCC-G13-F23"
+    branch_name = "^master$"
   }
 
   filename = "cloudbuild.yaml"
