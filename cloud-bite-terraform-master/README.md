@@ -16,3 +16,9 @@
 - Implement centralised logging and alerting on key metrics for the whole stack.
 
 ## STEPS OF IMPLEMENTATION:
+ - The provided repository ressources was cloned into a personal git repository  - this was later moved to pahol21 for ease of use
+ - main.tf was written to establish the baseline architecture
+ - Established early, primitive command-line-based deployment procedure
+ - A gcloud Source Repository was set to synchronize with the GitHub repository
+ - Added a trigger to main.tf to establish CICD pipeline, re-writing the manual procedure into cloudbuild.yaml
+ - 
