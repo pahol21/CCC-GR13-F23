@@ -14,7 +14,7 @@ export class OrderController {
       { name: "Burger", price: 10 },
       { name: "Pizza", price: 12 },
       { name: "Pasta", price: 15 },
-      { name: "Lasagna", price: 20 },
+      { name: "Lasagna", price: 16 },
     ];
     return menu;
   }
