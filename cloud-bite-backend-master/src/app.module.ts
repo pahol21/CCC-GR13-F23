@@ -7,11 +7,11 @@ import { Order } from "./order/order.entity";
   imports: [
     TypeOrmModule.forRoot({
       type: "mysql",
-      host: process.env.DB_HOST, 
+      host: '34.78.239.225', 
       port: 3306,
-      username: process.env.DB_USER, 
-      password: process.env.DB_PASSWORD, 
-      database: process.env.DB_NAME, 
+      username: 'admin_user', 
+      password: 'admin_password', 
+      database: 'my_database', 
       entities: [Order],
       synchronize: true,
       retryAttempts: 5,
