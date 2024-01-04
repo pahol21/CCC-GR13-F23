@@ -28,6 +28,7 @@ function App() {
 
   return (
     <div className="container">
+      <image className="background-image" src="https://rentspace.dk/wp-content/uploads/Restaurant-Herkomst1-Rentspace-JPEG.jpeg" alt="restourant" /> 
       <h1>Menu</h1>
       <div className="vert-scroll">
       {data.map((food) => (
