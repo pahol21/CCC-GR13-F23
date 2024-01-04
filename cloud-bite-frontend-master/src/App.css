@@ -43,17 +43,29 @@
   font-size: 1.5rem; /* Adjusts the font size */
 }
 
-.container li {
-  list-style: none; /* Removes the default list styling */
+.vert-scroll {
+  max-height: 100%; /* Adjusts the height of the container */
+  overflow-y: auto; /* Adds vertical scroll functionality */
+}
+
+.two-x-one-grid {
+  display: grid; /* Sets the display type to grid */
+  grid-template-columns: 1fr .1fr; /* Creates two columns */
+  grid-gap: 0.625rem; /* Adds space between columns */
+  align-items: center; /* Aligns items vertically */
   padding: 0.625rem; /* Adds padding to each list item */
   margin-bottom: 0.625rem; /* Adds space between list items */
   background-color: #fff; /* Sets a background color for list items */
   border: 1px solid #ddd; /* Adds a border */
   border-radius: 0.3125rem; /* Rounds the corners */
-  justify-content: space-evenly;
 }
 
-.container button {
+.item-header {
+  font-size: 1.25rem; /* Adjusts the font size */
+  margin: 0; /* Removes default margin */
+}
+
+.purchase-item-button {
   background-color: #4CAF50; /* Sets the background color */
   color: white; /* Sets the text color */
   border: none; /* Removes the border */

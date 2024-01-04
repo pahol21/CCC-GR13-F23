@@ -29,12 +29,14 @@ function App() {
   return (
     <div className="container">
       <h1>Menu</h1>
+      <div className="vert-scroll">
       {data.map((food) => (
-        <li>
-          {food.name} - {food.price}
-          <button onClick={() => handlePlaceOrder(food)}>Add to cart</button>
-        </li>
+        <div className="two-x-one-grid">
+          <div className="item-header">{food.name} - {food.price}</div>
+          <button className="purchase-item-button" onClick={() => handlePlaceOrder(food)}>Add to cart</button>
+        </div>
       ))}
+      </div>
     </div>
   );
 }
