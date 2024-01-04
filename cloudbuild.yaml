@@ -23,3 +23,4 @@ steps:
   # Step 5: Push the Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/ccc-gr13-f23/nestjs-backend']
+    dir: 'cloud-bite-backend-master'
