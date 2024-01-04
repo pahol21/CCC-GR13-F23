@@ -17,9 +17,6 @@ async function bootstrap() {
     database: await getSecret('ccc-gr13-f23', "db-database"),
   };
 
-  console.log('Database configuration set:');
-  console.log(dbConfig);
-
   const app = await NestFactory.create(AppModule.forRoot(dbConfig));
   app.enableCors({ origin: "*" });
   await app.listen(3000);
