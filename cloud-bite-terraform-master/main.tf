@@ -19,7 +19,7 @@ provider "google" {
     zone = "europe-west1-b"
 }
 
-resource "google_cloudbuild_trigger" "service-account-trigger" {
+resource "google_cloudbuild_trigger" "service-account-trigger2" {
   trigger_template {
     branch_name = "main"
     repo_name   = "github_pahol21_ccc-gr13-f23"
