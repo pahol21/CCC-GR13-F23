@@ -24,13 +24,7 @@ resource "google_cloudbuild_trigger" "service-account-trigger" {
     branch_name = "main"
     repo_name   = "github_pahol21_ccc-gr13-f23"
   }
-
-  service_account = google_service_account.cloudbuild_service_account.id
   filename        = "cloudbuild.yaml"
-}
-
-resource "google_service_account" "cloudbuild_service_account" {
-  account_id = "cloud-sa"
 }
 
 resource "google_compute_network" "vpc_network" {
