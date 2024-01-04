@@ -19,18 +19,18 @@ provider "google" {
     zone = "europe-west1-b"
 }
 
-resource "google_cloudbuild_trigger" "on_push_trigger" {
-  project = "ccc-gr13-f23"
-  name = "on-push-trigger"
-  description = "Trigger for repo"
-
+resource "google_cloudbuild_trigger" "service-account-trigger" {
   trigger_template {
-    repo_name = "github_pahol21_ccc-gr13-f23"
-    project = "CCC-G13-F23"
-    branch_name = "^master$"
+    branch_name = "main"
+    repo_name   = "github_pahol21_ccc-gr13-f23"
   }
 
-  filename = "cloudbuild.yaml"
+  service_account = google_service_account.cloudbuild_service_account.id
+  filename        = "cloudbuild.yaml"
+}
+
+resource "google_service_account" "cloudbuild_service_account" {
+  account_id = "cloud-sa"
 }
 
 resource "google_compute_network" "vpc_network" {
