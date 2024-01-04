@@ -13,7 +13,6 @@ const getConfig = (): TypeOrmModuleOptions => {
     password: process.env["DB_PASSWORD"],
     database: process.env["DB_NAME"],
     entities: [Order],
-    driver: "mysql2",
     synchronize: true,
     retryAttempts: 5,
   }
