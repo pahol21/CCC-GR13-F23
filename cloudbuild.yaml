@@ -30,7 +30,7 @@ steps:
     args: ['push', 'gcr.io/ccc-gr13-f23/nestjs-backend']
     dir: 'cloud-bite-backend-master'
 
-# Deploy container image to Cloud Run
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', 'nestjs-backend-service', '--image', 'gcr.io/ccc-gr13-f23/nestjs-backend:latest', '--region', 'europe-west1', '--platform', 'managed']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'nestjs-backend-service', '--image', 'gcr.io/ccc-gr13-f23/nestjs-backend:latest', '--region', 'europe-west1', '--platform', 'managed']
