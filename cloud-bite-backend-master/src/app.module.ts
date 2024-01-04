@@ -7,7 +7,7 @@ import { Order } from "./order/order.entity";
   imports: [
     TypeOrmModule.forRoot({
       type: "mysql",
-      host: '34.78.239.225', 
+      host: process.env.DB_HOST, 
       port: 3306,
       username: 'admin_user', 
       password: 'admin_password', 
