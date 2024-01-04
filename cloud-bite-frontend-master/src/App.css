@@ -50,6 +50,7 @@
   background-color: #fff; /* Sets a background color for list items */
   border: 1px solid #ddd; /* Adds a border */
   border-radius: 0.3125rem; /* Rounds the corners */
+  justify-content: space-evenly;
 }
 
 .container button {
