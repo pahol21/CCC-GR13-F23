@@ -20,5 +20,5 @@
  - main.tf was written to establish the baseline architecture
  - Established early, primitive command-line-based deployment procedure
  - A gcloud Source Repository was set to synchronize with the GitHub repository
- - Added a trigger to main.tf to establish CICD pipeline, re-writing the manual procedure into cloudbuild.yaml
+ - Added a cloudbuild trigger to the terraform configuration to establish CICD pipeline, re-writing the manual procedure into cloudbuild.yaml
  - 
