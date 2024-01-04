@@ -1,28 +1,22 @@
 import { Module } from "@nestjs/common";
-import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import { OrderModule } from "./order/order.module";
 import { Order } from "./order/order.entity";
 
-
-const getConfig = (): TypeOrmModuleOptions => {
-  return {
-    type: "mysql",
-    host: process.env["DB_HOST"],
-    port: 3306,
-    username: process.env["DB_USER"],
-    password: process.env["DB_PASSWORD"],
-    database: process.env["DB_NAME"],
-    entities: [Order],
-    synchronize: true,
-    retryAttempts: 5,
-  }
-}
-
 @Module({
   imports: [
-    TypeOrmModule.forRoot( getConfig() ),
+    TypeOrmModule.forRoot({
+      type: "mysql",
+      host: '34.78.239.225', // Direct IP address
+      port: 3306,
+      username: 'admin_user', // Direct username
+      password: 'admin_password', // Direct password
+      database: 'my-database', // Direct database name
+      entities: [Order],
+      synchronize: true,
+      retryAttempts: 5,
+    }),
     OrderModule,
   ],
 })
 export class AppModule {}
-
