@@ -13,3 +13,13 @@ steps:
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['-m', 'cp', '-r', './build/*', 'gs://cloud-frontend-bucket/']
     dir: 'cloud-bite-frontend-master'
+
+  # Backend Steps
+  # Step 4: Build the Docker image for the backend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/ccc-gr13-f23/nestjs-backend', '.']
+    dir: 'cloud-bite-backend-master'
+
+  # Step 5: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/ccc-gr13-f23/nestjs-backend']
