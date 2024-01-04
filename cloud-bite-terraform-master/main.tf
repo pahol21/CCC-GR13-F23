@@ -1,4 +1,3 @@
-#Does this synchronize
 # Initialize the GCP provider
 terraform {
     required_providers {
@@ -14,11 +13,26 @@ terraform {
     }
 }
 
-
 provider "google" {
     project = "ccc-gr13-f23"
     region = "europe-west1"
     zone = "europe-west1-b"
+}
+
+resource "google_cloudbuild_trigger" "on_push_trigger" {
+  project = "ccc-gr13-f23"
+  name = "on-push-trigger"
+  description = "Trigger for repo"
+
+  github {
+    owner = "pahol21"
+    name = "CCC-G13-F23"
+    push {
+      branch = "^master$"
+    }
+  }
+
+  filename = "cloudbuild.yaml"
 }
 
 resource "google_compute_network" "vpc_network" {
