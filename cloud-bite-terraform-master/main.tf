@@ -92,6 +92,15 @@ resource "google_cloud_run_service" "nestjs_service" {
   }
 }
 
+#Exporting Logs 
+resource "google_logging_project_sink" "cloud_run_sink" {
+  name        = "cloud-run-sink"
+  destination = "pubsub.googleapis.com/projects/ccc-gr13-f23/topics/backend-logs"
+  filter      = "resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"nestjs-backend-service\""
+
+  unique_writer_identity = true
+}
+
 resource "google_cloud_run_service_iam_member" "nestjs_service_public" {
   location = google_cloud_run_service.nestjs_service.location
   project  = google_cloud_run_service.nestjs_service.project
@@ -140,7 +149,7 @@ resource "google_secret_manager_secret" "db_host" {
 
 resource "google_secret_manager_secret_version" "db_host" {
   secret      = google_secret_manager_secret.db_host.id
-  secret_data = "34.78.239.225"  # Replace with your actual DB host
+  secret_data = "34.78.239.225" 
 }
 
 resource "google_secret_manager_secret" "db_username" {
@@ -152,7 +161,7 @@ resource "google_secret_manager_secret" "db_username" {
 
 resource "google_secret_manager_secret_version" "db_username" {
   secret      = google_secret_manager_secret.db_username.id
-  secret_data = "admin_user"  # Replace with your actual DB username
+  secret_data = "admin_user" 
 }
 
 resource "google_secret_manager_secret" "db_password" {
@@ -176,5 +185,5 @@ resource "google_secret_manager_secret" "db_database" {
 
 resource "google_secret_manager_secret_version" "db_database" {
   secret      = google_secret_manager_secret.db_database.id
-  secret_data = "my-database"  # Replace with your actual DB name
+  secret_data = "my-database" 
 }

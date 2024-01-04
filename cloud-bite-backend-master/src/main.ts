@@ -12,7 +12,7 @@ async function getSecret(project: string, key: string) {
 
 async function bootstrap() {
   process.env["DB_HOST"] = await getSecret('ccc-gr13-f23', "db-host");
-  process.env["DB_USER"] = await getSecret('ccc-gr13-f23', "db-user");
+  process.env["DB_USER"] = await getSecret('ccc-gr13-f23', "db-username");
   process.env["DB_PASSWORD"] = await getSecret('ccc-gr13-f23', "db-password");
   process.env["DB_NAME"] = await getSecret('ccc-gr13-f23', "db-name");
 
