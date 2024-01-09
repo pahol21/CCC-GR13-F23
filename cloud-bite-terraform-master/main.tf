@@ -100,6 +100,10 @@ resource "google_cloud_run_service" "nestjs_service" {
   }
 }
 
+output "nestjs_service_url" {
+  value = google_cloud_run_service.nestjs_service.status[0].url
+}
+
 #Exporting Logs 
 resource "google_logging_project_sink" "cloud_run_sink" {
   name        = "cloud-run-sink"
