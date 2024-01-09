@@ -10,7 +10,7 @@ resource "google_storage_bucket" "frontend_images_bucket" {
     not_found_page   = "https://http.cat/404"
   }
 }
-resource "google_storage_bucket_iam_binding" "public_read" {
+resource "google_storage_bucket_iam_binding" "iamges_public_read" {
   bucket = google_storage_bucket.frontend_images_bucket.name
   role   = "roles/storage.objectViewer"
 

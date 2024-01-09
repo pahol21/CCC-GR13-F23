@@ -14,7 +14,7 @@ resource "google_storage_bucket" "frontend_bucket" {
 }
 
 # Make the GCS bucket publicly readable so that it can serve the website
-resource "google_storage_bucket_iam_binding" "public_read" {
+resource "google_storage_bucket_iam_binding" "frontend_public_read" {
   bucket = google_storage_bucket.frontend_bucket.name
   role   = "roles/storage.objectViewer"
 
