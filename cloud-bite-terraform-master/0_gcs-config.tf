@@ -41,6 +41,6 @@ resource "google_project_iam_binding" "bigquery_data_editor_binding" {
   role                        = "roles/bigquery.dataEditor"
 
   members = [
-    "serviceAccount:${google_logging_project_sink.my_sink.writer_identity}"
+    "serviceAccount:${google_logging_project_sink.top_level_sink.writer_identity}"
   ]
 }
