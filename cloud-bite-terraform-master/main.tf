@@ -58,10 +58,11 @@ resource "google_storage_bucket" "frontend_bucket" {
   location      = "EU"
   storage_class = "STANDARD"
   force_destroy = true
+  uniform_bucket_level_access = true
 
   website {
     main_page_suffix = "index.html"
-    not_found_page   = "404.html"
+    not_found_page   = "https://http.cat/404"
   }
 }
 
@@ -75,6 +76,31 @@ resource "google_storage_bucket_iam_binding" "public_read" {
   ]
 }
 
+# Create a Google Cloud Load Balancer
+resource "google_compute_backend_bucket" "backend_bucket" {
+  name        = "frontend-backend-bucket"
+  bucket_name = google_storage_bucket.frontend_bucket.name
+
+  enable_cdn = true
+}
+
+# Frontend configuration for the load balancer
+resource "google_compute_url_map" "url_map" {
+  name            = "frontend-url-map"
+  default_service = google_compute_backend_bucket.backend_bucket.self_link
+}
+
+# Create HTTP(S) load balancer
+resource "google_compute_global_forwarding_rule" "default" {
+  name       = "frontend-load-balancer"
+  target     = google_compute_target_http_proxy.default.self_link
+  port_range = "80"
+}
+
+resource "google_compute_target_http_proxy" "default" {
+  name    = "http-lb-proxy"
+  url_map = google_compute_url_map.url_map.self_link
+}
 
 #Images
 resource "google_storage_bucket" "frontend_images_bucket" {
@@ -85,7 +111,7 @@ resource "google_storage_bucket" "frontend_images_bucket" {
 
   website {
     main_page_suffix = "index.html"
-    not_found_page   = "404.html"
+    not_found_page   = "https://http.cat/404"
   }
 }
 resource "google_storage_bucket_iam_binding" "public_read" {
