@@ -1,6 +1,6 @@
 # Cloud SQL Database Instance
 resource "google_sql_database_instance" "default" {
-  name             = "my-database-instance"
+  name             = "order-database-instance"
   region           = "europe-west1"
   database_version = "MYSQL_5_7"
 
@@ -18,7 +18,7 @@ resource "google_sql_database_instance" "default" {
 
 # Cloud SQL Database
 resource "google_sql_database" "default" {
-  name     = "my-database"
+  name     = "order-database"
   instance = google_sql_database_instance.default.name
 }
 
