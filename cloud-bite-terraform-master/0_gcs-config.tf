@@ -32,6 +32,7 @@ resource "google_logging_project_sink" "top_level_sink" {
   name           = "project-sink"
   destination    = "bigquery.googleapis.com/projects/${google_bigquery_dataset.combined_logs.project}/datasets/${google_bigquery_dataset.combined_logs.dataset_id}"
   filter         = "resource.type=\"cloud_run_revision\" OR resource.type=\"storage.googleapis.com/Bucket\" OR resource.type=\"cloudsql.googleapis.com/Instance\""
+  project        = "ccc-gr13-f23"
 
   unique_writer_identity = true
 }
