@@ -1,0 +1,15 @@
+steps:
+  # Step 1: Install dependencies
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+    dir: 'cloud-bite-frontend-master'
+
+  # Step 2: Build the React application
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+    dir: 'cloud-bite-frontend-master'
+
+  # Step 3: Deploy the build artifacts to the Google Cloud Storage bucket
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'cp', '-r', './build/*', 'gs://cloud-frontend-bucket/']
+    dir: 'cloud-bite-frontend-master'

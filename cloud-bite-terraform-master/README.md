@@ -21,4 +21,5 @@
  - Established early, primitive command-line-based deployment procedure
  - A gcloud Source Repository was set to synchronize with the GitHub repository
  - Added a cloudbuild trigger to the terraform configuration to establish CICD pipeline, re-writing the manual procedure into cloudbuild.yaml
- - 
+ - Extended pipeline to include the backend
+ - Moved DB credentials to projects' Secret Manager - added secrets to the terraform configuration

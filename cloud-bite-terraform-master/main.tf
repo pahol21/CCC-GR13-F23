@@ -19,12 +19,20 @@ provider "google" {
     zone = "europe-west1-b"
 }
 
-resource "google_cloudbuild_trigger" "service-account-trigger2" {
+resource "google_cloudbuild_trigger" "on-push-frontend-rebuild" {
   trigger_template {
     branch_name = "main"
-    repo_name   = "github_pahol21_ccc-gr13-f23"
+    repo_name   = "github_pahol21_ccc-gr13-f23_frontend"
   }
-  filename        = "cloudbuild.yaml"
+  filename        = "cloudbuild_frontend.yaml"
+}
+
+resource "google_cloudbuild_trigger" "on-push-backend-rebuild" {
+  trigger_template {
+    branch_name = "main"
+    repo_name   = "github_pahol21_ccc-gr13-f23_backend"
+  }
+  filename        = "cloudbuild_backend.yaml"
 }
 
 resource "google_compute_network" "vpc_network" {
