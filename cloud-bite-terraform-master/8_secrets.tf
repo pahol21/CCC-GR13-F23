@@ -7,7 +7,7 @@ resource "google_secret_manager_secret" "db_host" {
 
 resource "google_secret_manager_secret_version" "db_host" {
   secret      = google_secret_manager_secret.db_host.id
-  secret_data = "34.78.239.225" 
+  secret_data = "10.50.0.3" 
 }
 
 resource "google_secret_manager_secret" "db_username" {

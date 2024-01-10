@@ -4,7 +4,7 @@ resource "google_cloud_run_service" "nestjs_service" {
   name     = "nestjs-backend-service"
   location = "europe-west1"
   
-   template {
+  template {
     spec {
       containers {
         image = "gcr.io/ccc-gr13-f23/nestjs-backend:latest"
@@ -13,7 +13,14 @@ resource "google_cloud_run_service" "nestjs_service" {
         }
       }
     }
+    metadata {
+      annotations = {
+        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.vpc_connector.name
+        "run.googleapis.com/vpc-access-egress"    = "all-traffic"
+      }
+    }
   }
+
 
   traffic {
     percent         = 100
