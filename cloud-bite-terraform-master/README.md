@@ -36,3 +36,4 @@
  - Enabled CDN for the frontend using a http load-balancer and url map.
  - Added project-level log sink exporting logs for the frontend, backend and DB to a bigquery dataset.
  - Enabled cache invalidation for frontend CDN to improve iteration speed.
+ - Secured connection between cloud run and cloud sql with a vpc connector
