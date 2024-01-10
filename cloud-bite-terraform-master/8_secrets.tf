@@ -43,5 +43,5 @@ resource "google_secret_manager_secret" "db_database" {
 
 resource "google_secret_manager_secret_version" "db_database" {
   secret      = google_secret_manager_secret.db_database.id
-  secret_data = "my-database" 
+  secret_data = "order-database" 
 }
